@@ -7,11 +7,24 @@
 
   // events go in the middle
   function showLightbox() {
+    let houseName = this.className.split(" ")[1];
+    //takes the first letter in the source and uppercases it
+    //adds it to the rest of the word
+    let newSource = houseName.charAt(0).toUpperCase() + houseName.slice(1);
+    let targetSource = (`video/House-${newSource}.mp4`);
+
+
     // pop open a lightbox here and show some content
     // start with a video
     // debugger;
     lightBox.classList.add("show-lightbox");
 
+
+    //set the source
+    gotVideo.src = targetSource;
+    //load the source
+    gotVideo.load();
+    //play the source
     gotVideo.play();
   }
 
