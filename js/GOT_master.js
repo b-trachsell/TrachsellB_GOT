@@ -5,7 +5,8 @@
       gotVideo = lightBox.querySelector("video"),
       closeLightBox = lightBox.querySelector(".lightbox-close"),
       currentHouse = document.querySelector("h1"),
-      houseDescription = document.querySelector(".house-info");
+      houseDescription = document.querySelector(".house-info"),
+      imageContainer = document.querySelector("#houseImages");
 
       //THIS IS MAKING AN ARRAY
       const houseData = [
@@ -31,7 +32,7 @@
     //use this to populate the h1 elements
     currentHouse.textContent = (`House ${houseData[this.dataset.offset][0]}`);
     houseDescription.textContent = (`${houseData[this.dataset.offset][1]}`);
-    
+
 
     let targetSource = (`video/House-${newSource}.mp4`);
 
@@ -57,8 +58,20 @@
     gotVideo.currentTime = 0;
   }
 
+  function animateBanners() {
+    let offsetWidth = 600;
+    let multiplier = this.dataset.offset;
+    let newPosition = offsetWidth * multiplier;
+
+    //debugger;
+    imageContainer.style.right = (`${newPosition}px`);
+  }
+
+
+
+
   // add a click event to the sigilButtons
-  sigilButtons.forEach(button => button.addEventListener("click", showLightbox));
+  sigilButtons.forEach(button => button.addEventListener("click", animateBanners));
 
   // add an event handler for the lightbox close button
   closeLightBox.addEventListener("click", hideLightBox);
